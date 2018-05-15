@@ -1,0 +1,13 @@
+#answers.txt
+
+1. At first, I found NumPy easier to work with, but after completing monthly_totals.py, I started to prefer working with Pandas. NumPy seems nice to quickly learn, but seems messier. Pandas was harder to learn (in because of its much worse documentation), but seems cleaner and presents data in a nicer way.
+As for code legibility, I believe pandas to be easier to read because of it's marked headers.
+
+2.
+%timeit pivot_months_pandas(data)
+76.5 ms ± 1.9 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+%timeit pivot_months_loops(data)
+698 ms ± 79.7 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+The time difference can be explained by pandas being optimized for performance, utilizing C when possible for operations. It is close to 10x faster than normal python in this case.
