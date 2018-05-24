@@ -1,0 +1,4 @@
+1.The best fit line, is a prediction line. The Timestamp * slope takes into account the rising ratings over time because the slope is positive.
+We add the intercept (which is negative) to place the line at a reasonable starting place (in this case pretty much at 10/10).
+
+2.This produces a fit line on the graph because it's a prediction, taking into account things such as the ratings going up over time. The timestamp and created_at values are paired correctly because they are the same values in different formats.
