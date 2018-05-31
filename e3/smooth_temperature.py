@@ -28,8 +28,8 @@ sys_load_1 =  (1.3*cpu_data['cpu_percent'][0] + 0.8*cpu_data['sys_load_1'][0])
 kalman_data = cpu_data[['temperature', 'cpu_percent', 'sys_load_1']]
 initial_state = kalman_data.iloc[0]
 
-observation_covariance = np.diag([2, 0, 0]) ** 2 # TODO: shouldn't be zero
-transition_covariance = np.diag([1, 0, 0]) ** 2 # TODO: shouldn't be zero
+observation_covariance = np.diag([10, 10, 10]) ** 2 # TODO: shouldn't be zero
+transition_covariance = np.diag([0.01, 0.01, 0.01]) ** 2 # TODO: shouldn't be zero
 transition = [[1, -1, 0.7], [0, 0.6, 0.03], [0, 1.3, 0.8]] # TODO: shouldn't (all) be zero
 
 kf = KalmanFilter(
@@ -39,7 +39,7 @@ kf = KalmanFilter(
     transition_covariance=transition_covariance,
     transition_matrices=transition
 )
-
+print(kalman_data.shape)
 kalman_smoothed, _ = kf.smooth(kalman_data)
 plt.plot(cpu_data['timestamp'], kalman_smoothed[:, 0], 'g-')
 plt.show()

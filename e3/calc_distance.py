@@ -30,8 +30,10 @@ def output_gpx(points, output_filename):
 
 #https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula/21623206
 #Formulas taken from here
-def distance(coordinates):
-    #if coordinates.lat.shift(1).empty:    
+def distance(coordinates):  
+    myTotal = pd.DataFrame(
+        columns = ['total'])
+   
     lat1 = coordinates['lat']
     lon1 = coordinates['lon']
     
@@ -45,8 +47,8 @@ def distance(coordinates):
     a = np.sin(degLat/2) * np.sin(degLat/2) + (np.cos((lat1)*(np.pi/180))) * (np.cos((lat2)*(np.pi/180))) * np.sin(degLon/2) * np.sin(degLon/2)
     formula = 2 * np.arctan2(np.sqrt(a), np.sqrt(1-a))
     
-    coordinates['total'] = radius * formula
-    total = coordinates['total'].sum()
+    myTotal['total'] = radius * formula
+    total = myTotal['total'].sum()
 
     print(total)
     return total
@@ -56,6 +58,8 @@ def main():
     root = points.getroot()
     coordinates = pd.DataFrame(
             columns = ['lat', 'lon'])
+    #kalman_data = pd.DataFrame(
+            #columns = ['lat', 'lon'])
     #print(points.findall('{http://www.topografix.com/GPX/1/0}trkpt'))
     #print(root.findall('.//{http://www.topografix.com/GPX/1/0}trkpt'))
     for trkpt in root.findall('.//{http://www.topografix.com/GPX/1/0}trkpt'):
@@ -64,19 +68,36 @@ def main():
         latlon = {'lat' : [lat], 'lon' : [lon]}
         df = pd.DataFrame(data = latlon)
         coordinates = coordinates.append(df)
-
-    #print(coordinates)
-    print(coordinates.shape)
-    distance(coordinates)
-    #for child in root:
-     #   for subchild in child:
-      #      print(subchild.findall('.//trkpt'))
-       #     print(subchild.tag, subchild.attrib)
-    #print('Unfiltered distance: %0.2f' % (distance(points),))
+        #kalman_data = kalman_data.append(df)
     
-    #smoothed_points = smooth(points)
-    #print('Filtered distance: %0.2f' % (distance(smoothed_points),))
-    #output_gpx(smoothed_points, 'out.gpx')
+    #print(coordinates)
+    #print(coordinates.shape)
+    distance(coordinates)
+    
+    kalman_data = coordinates
+    #print(kalman_data.shape)
+    initial_state = kalman_data.iloc[0]
+    #print(initial_state)
+
+    observation_covariance = np.diag([0.55, 0.55]) ** 2 # TODO: shouldn't be zero
+    transition_covariance = np.diag([0.5, 0.5]) ** 2 # TODO: shouldn't be zero
+    transition = [[1, 0], [0, 1]] # TODO: shouldn't (all) be zero
+
+    kf = KalmanFilter(
+        initial_state_mean=initial_state,
+        initial_state_covariance=observation_covariance,
+        observation_covariance=observation_covariance,
+        transition_covariance=transition_covariance,
+        transition_matrices=transition
+    )
+    #smoothed_points = np.array()
+    #print(kalman_data.shape())
+    #print(kf.smooth(kalman_data))
+    smoothed_points, _ = (kf.smooth(kalman_data.values))
+    #print(smoothed_points)
+    smoothed_data = pd.DataFrame(smoothed_points, columns = ['lat', 'lon'])
+    print('Filtered distance: %0.2f' % (distance(smoothed_data)))
+    output_gpx(smoothed_data, 'out.gpx')
 
 
 if __name__ == '__main__':
