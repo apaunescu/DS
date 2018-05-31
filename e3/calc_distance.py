@@ -58,26 +58,17 @@ def main():
     root = points.getroot()
     coordinates = pd.DataFrame(
             columns = ['lat', 'lon'])
-    #kalman_data = pd.DataFrame(
-            #columns = ['lat', 'lon'])
-    #print(points.findall('{http://www.topografix.com/GPX/1/0}trkpt'))
-    #print(root.findall('.//{http://www.topografix.com/GPX/1/0}trkpt'))
     for trkpt in root.findall('.//{http://www.topografix.com/GPX/1/0}trkpt'):
         lat = float(trkpt.get('lat'))
         lon = float(trkpt.get('lon'))
         latlon = {'lat' : [lat], 'lon' : [lon]}
         df = pd.DataFrame(data = latlon)
         coordinates = coordinates.append(df)
-        #kalman_data = kalman_data.append(df)
     
-    #print(coordinates)
-    #print(coordinates.shape)
     distance(coordinates)
     
     kalman_data = coordinates
-    #print(kalman_data.shape)
     initial_state = kalman_data.iloc[0]
-    #print(initial_state)
 
     observation_covariance = np.diag([0.55, 0.55]) ** 2 # TODO: shouldn't be zero
     transition_covariance = np.diag([0.5, 0.5]) ** 2 # TODO: shouldn't be zero
@@ -90,11 +81,7 @@ def main():
         transition_covariance=transition_covariance,
         transition_matrices=transition
     )
-    #smoothed_points = np.array()
-    #print(kalman_data.shape())
-    #print(kf.smooth(kalman_data))
     smoothed_points, _ = (kf.smooth(kalman_data.values))
-    #print(smoothed_points)
     smoothed_data = pd.DataFrame(smoothed_points, columns = ['lat', 'lon'])
     print('Filtered distance: %0.2f' % (distance(smoothed_data)))
     output_gpx(smoothed_data, 'out.gpx')
