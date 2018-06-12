@@ -1,0 +1,61 @@
+
+csv1_mean_x: 8.71769618641382 
+csv1_mean_y: 12.522874034702584 
+csv1_std_x: 12.15551723122202 
+csv1_std_y: 6.63996400756785 
+csv1_min_x: -22.635877790008944 
+csv1_max_x: 35.23705548785129 
+csv1_min_y: -2.5650878326932127 
+csv1_max_y: 27.38415261152477 
+correlation1: 0.9503256954375483
+csv2_mean_x: -0.7107871267159573 
+csv2_mean_y: -0.7489869764497991 
+csv2_std_x: 11.481583587790734 
+csv2_std_y: 6.257917998755848 
+csv2_min_x: -33.2711130771198 
+csv2_max_x: 27.6470003722073 
+csv2_min_y: -18.621803760419066 
+csv2_max_y: 14.147314992317481 
+correlation2: 0.9551531665750371
+csv3_mean_x: 0.9689074904200939 
+csv3_mean_y: 8.508535236641327 
+csv3_std_x: 2.235557861057969 
+csv3_std_y: 1.1493008110024525 
+csv3_min_x: -2.4490643296742807 
+csv3_max_x: 4.51888491755363 
+csv3_min_y: 6.641734490391762 
+csv3_max_y: 10.551871022804317 
+correlation3: 0.9819372646760663
+csv4_mean_x: 49.90508614830509 
+csv4_mean_y: 18.553836525423726 
+csv4_std_x: 28.508610519881934 
+csv4_std_y: 16.545896442941682 
+csv4_min_x: 0.0 
+csv4_max_x: 87.3767 
+csv4_min_y: 0.0 
+csv4_max_y: 44.56504 
+correlation4: -0.08119306735490814
+csv5_mean_x: 49.90999357843095 
+csv5_mean_y: 18.555524937729086 
+csv5_std_x: 28.500000943801357 
+csv5_std_y: 16.540796301840782 
+csv5_min_x: 4.337892453674525 
+csv5_max_x: 91.0528633396976 
+csv5_min_y: 0.05549750758115175 
+csv5_max_y: 49.93419703633311 
+correlation5: -0.08823598983058882
+csv6_mean_x: 7.21615517960992 
+csv6_mean_y: 7.602215028237295 
+csv6_std_x: 11.921599067458311 
+csv6_std_y: 11.764382455006649 
+csv6_min_x: -24.33382075234097 
+csv6_max_x: 35.402138910929 
+csv6_min_y: -22.9563569970746 
+csv6_max_y: 36.07987403078143 
+correlation6: 0.9350685662094907
+CSV1 - positive correlation, high standard devitiation for both, similar means
+CSV2 - very similar means, positive correlation, high standard deviation for x (almost double y)
+CSV3 - very high positive correlation, similar standard deviattion (it's also low)
+CSV4 - very very slightl negative correlation, very high standard deviations, min values for both are 0
+CSV5 - very very slight negative correlation, very high standard deviations, high max values
+CSV6 - positive correlation, similar values for all (mean, std, range)
