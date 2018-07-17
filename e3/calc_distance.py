@@ -50,7 +50,6 @@ def distance(coordinates):
     myTotal['total'] = radius * formula
     total = myTotal['total'].sum()
 
-    print(total)
     return total
 
 def main():
@@ -66,6 +65,7 @@ def main():
         coordinates = coordinates.append(df)
     
     distance(coordinates)
+    print('Unfiltered distance: %0.2f' % (distance(coordinates)))
     
     kalman_data = coordinates
     initial_state = kalman_data.iloc[0]

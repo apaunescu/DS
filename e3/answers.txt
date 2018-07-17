@@ -1,0 +1,3 @@
+1.I felt Kalman smoothing had a better result. I noticed that it reacted better to drastic changes in data and prevented the most amount of actual-data loss when filtering the noise.
+
+2.Having a compass could be useful for reducing noise. We would be able to see something like, "90(degrees) East", and verify from our lat/long path that it actually matched what our compass was saying. Knowing speed, we could see that some zig/zags make no sense (for example if we were on a road and the map shows a turn (which would require a slower speed)). Looking at a combination of speed and time/stamp would also verify this.

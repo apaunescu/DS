@@ -1,0 +1,33 @@
+1. We are lightly p-hacking, by limiting down to just instructors, it shouldn't be too significant. However, we end up with a p-value of just slightly over 0.05 and thus have to accept that the data isn't significant. We only had 1 conclusion wiht value p<0.05, and i would only be comfortable with that conclusion.
+
+2. We would have needed to run (7 choose 2) = 21 tests. We would have a 85.7% Chance of being correct.
+
+3. We could not distinguish between (merge1 and qs2), (qs2 and qs3), and (qs4 and qs5).
+
+Fastest to slowest = 
+qs1 -> partition_sort -> qs4 -> qs5 -> qs3 -> qs2 -> merge1
+
+
+group1         group2     meandiff  lower   upper  reject
+-------------------------------------------------------------
+    merg1      partition_sort -0.0604  -0.0702 -0.0505  True 
+    merg1           qs1       -0.0858  -0.0957  -0.076  True 
+    merg1           qs2       -0.0093  -0.0191  0.0006 False 
+    merg1           qs3       -0.0125  -0.0223 -0.0027  True 
+    merg1           qs4       -0.0401  -0.0499 -0.0303  True 
+    merg1           qs5       -0.0395  -0.0493 -0.0297  True 
+partition_sort      qs1       -0.0255  -0.0353 -0.0157  True 
+partition_sort      qs2        0.0511   0.0413  0.0609  True 
+partition_sort      qs3        0.0479   0.038   0.0577  True 
+partition_sort      qs4        0.0203   0.0105  0.0301  True 
+partition_sort      qs5        0.0209   0.0111  0.0307  True 
+     qs1            qs2        0.0766   0.0668  0.0864  True 
+     qs1            qs3        0.0733   0.0635  0.0832  True 
+     qs1            qs4        0.0458   0.0359  0.0556  True 
+     qs1            qs5        0.0464   0.0365  0.0562  True 
+     qs2            qs3       -0.0033  -0.0131  0.0066 False 
+     qs2            qs4       -0.0308  -0.0406  -0.021  True 
+     qs2            qs5       -0.0302  -0.0401 -0.0204  True 
+     qs3            qs4       -0.0276  -0.0374 -0.0177  True 
+     qs3            qs5        -0.027  -0.0368 -0.0172  True 
+     qs4            qs5        0.0006  -0.0092  0.0104 False 

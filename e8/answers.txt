@@ -1,0 +1,3 @@
+1. The best model for this task was Knn Model (either Lab or RGB), as they are both very similar (about 0.75 each). I think this is because we have colour data, and the colours predictions rely on their distance from each other and their clustering. Having the nearest neighbors to each point is good for this distance/clustering task.
+
+2. The errors are reasonable. If we look at the errors vs truth, most mistakes are in the exact same province, however, we can see things like "Victoria / Seattle", this is reasonable as they have very similar climates. Most errors can be explained by having very similar climate. We could potentially add air pressure, it would be higher or lower in different parts at different times.

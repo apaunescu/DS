@@ -1,0 +1,3 @@
+1.With a P-value of 1.08e-104, we can safely reject the null hypothesis, looking at our histogram, we can see what looks like a normal distribution as well. Because of our p-value and normal looking histogram, we can reasonable conclude that the ratings are increasing.
+
+2.Yes, although the graph is still fairly jagged, comparing it closely with the original, we can see the predictions have a nicer and more accurate smoothing to them.

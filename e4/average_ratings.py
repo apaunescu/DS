@@ -1,6 +1,4 @@
-import xml.etree.ElementTree as ET
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
 import difflib
 import sys
@@ -17,7 +15,7 @@ def cleaner(string):
 def realTitle(title):
 	match = difflib.get_close_matches(title, movies['title'], n=100, cutoff=0.6)
 	if (match == []):
-		match = "N/A"
+		match = "Z"
 	return match[0]
 
 
@@ -32,8 +30,9 @@ userRatings = pd.read_csv(csvFile)
 userRatings['title'] = userRatings['title'].apply(realTitle)
 userRatings = userRatings.groupby('title').mean().reset_index()
 userRatings.rating = userRatings.rating.round(2)
+userRatings = userRatings[userRatings['title'] != "Z"]
 
 userRatings.to_csv(output)
-
+#print(userRatings)
 
 

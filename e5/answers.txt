@@ -1,0 +1,9 @@
+1)The sqrt transform was closest to satisfying assumptions as all the p-values were closest to 0.05.
+
+2)
+-Without knowing if our data is normally distributed, can we see a difference in reddit comments posted comparing weekend and weekdays?
+-After transforming our data to be (more) normally distributed, can we see a difference in reddit comments posted comparing weekend and weekdays?
+
+3)The Central Limit Theorem seems to be the most accurate, our p-values >0.05 show that we can reject the null hypothesis
+
+4)Weekdays
